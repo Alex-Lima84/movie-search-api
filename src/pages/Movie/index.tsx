@@ -14,7 +14,7 @@ export default function Movie() {
       await api
         .get(`movie/${id}`, {
           params: {
-            api_key: "e4fcec0d04b4c36fe887647e07aaae28",
+            api_key: process.env.REACT_APP_AUTH_KEY,
             language: "pt-BR",
           },
         })

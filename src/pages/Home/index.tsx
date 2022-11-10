@@ -10,7 +10,7 @@ export type MovieType = {
   poster_path?: string;
   backdrop_path?: string;
   overview?: string;
-  vote_average?: number
+  vote_average?: number;
 };
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
     async function loadNowPlayingMovies() {
       const { data } = await api.get("movie/now_playing", {
         params: {
-          api_key: "e4fcec0d04b4c36fe887647e07aaae28",
+          api_key: process.env.REACT_APP_AUTH_KEY,
           language: "pt-BR",
           page: 1,
         },
