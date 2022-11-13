@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
 import { MovieType } from "../Home";
+import "./styles.scss";
 
 export default function Movie() {
   const { id } = useParams();
@@ -52,7 +53,13 @@ export default function Movie() {
       />
       <h3>Sinopse</h3>
       <span>{movie.overview}</span>
-      <h4>Avaliação: {movie.vote_average} /10</h4>
+      <h4>Avaliação: {movie.vote_average!.toFixed(1)} /10</h4>
+      <div className="movie-buttons-container">
+        <button>Salvar</button>
+        <button>
+          <a href="#">Trailer</a>
+        </button>
+      </div>
     </div>
   );
 }
