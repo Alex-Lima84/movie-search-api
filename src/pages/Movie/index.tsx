@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
 import { MovieType } from "../Home";
@@ -7,6 +7,7 @@ import "./styles.scss";
 
 export default function Movie() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [movie, setMovie] = useState<MovieType>({});
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -25,6 +26,8 @@ export default function Movie() {
         })
         .catch(() => {
           console.log("Filme não encontrado");
+          navigate("/", { replace: true });
+          return;
         });
     }
     showMovieInfo();
@@ -34,7 +37,26 @@ export default function Movie() {
       setLoading(true);
       console.log("Componente foi desmontado");
     };
-  }, []);
+  }, [id, navigate]);
+
+  function saveMovie() {
+    const myMoviesList: string | null = localStorage.getItem("@moviesList");
+
+    let savedMovies = JSON.parse(myMoviesList!) || [];
+
+    const movieAlreadySaved = savedMovies.some(
+      (savedMovie: { id: number | undefined }) => savedMovie.id === movie.id
+    );
+
+    if (movieAlreadySaved) {
+      alert("ESTE FILME JÁ ESTÁ SALVO NA LISTA");
+      return;
+    }
+
+    savedMovies.push(movie);
+    localStorage.setItem("@moviesList", JSON.stringify(savedMovies));
+    alert("FILME SALVO COM SUCESSO");
+  }
 
   if (loading) {
     return (
@@ -55,9 +77,15 @@ export default function Movie() {
       <span>{movie.overview}</span>
       <h4>Avaliação: {movie.vote_average!.toFixed(1)} /10</h4>
       <div className="movie-buttons-container">
-        <button>Salvar</button>
+        <button onClick={saveMovie}>Salvar</button>
         <button>
-          <a href="#">Trailer</a>
+          <a
+            href={`https://youtube.com/results?search_query=${movie.title} trailer official`}
+            target="blank"
+            rel="external"
+          >
+            Trailer
+          </a>
         </button>
       </div>
     </div>
