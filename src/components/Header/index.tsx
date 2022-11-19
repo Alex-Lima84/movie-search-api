@@ -5,10 +5,10 @@ export default function Header() {
   return (
     <header>
       <Link className="logo" to="/">
-        Prime Flix
+        Movies DB
       </Link>
       <Link className="favorites" to="/favorites">
-        Minha seleção
+        My list
       </Link>
     </header>
   );

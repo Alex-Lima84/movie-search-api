@@ -22,7 +22,7 @@ export default function Home() {
       const { data } = await api.get("movie/now_playing", {
         params: {
           api_key: process.env.REACT_APP_AUTH_KEY,
-          language: "pt-BR",
+          // language: "pt-BR",
           page: 1,
         },
       });
@@ -53,7 +53,7 @@ export default function Home() {
                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={movie.title}
               />
-              <Link to={`/movie/${movie.id}`}>Acessar</Link>
+              <Link to={`/movie/${movie.id}`}>See more</Link>
             </article>
           );
         })}
