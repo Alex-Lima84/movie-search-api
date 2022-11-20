@@ -1,40 +1,47 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
 import { MovieType } from "../../types";
 import "./styles.scss";
 
+import notAvailable from "../../assets/Image-Not-Available.png";
+
 export default function SearchMovie() {
-  const [searchMovie, setSearchMovie] = useState([]);
+  const [movieTitle, setMovieTitle] = useState([]);
+  const [movieInfo, setMovieInfo] = useState<MovieType>();
   const [query, setQuery] = useState("");
-  const [queryValue, setQueryValue] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleSubmit = (e: any) => {
-    setLoading(true)
-    e.preventDefault();
-    setQuery(queryValue);
-  };
-
-  async function searchMovies() {
-    if (query) {
-      const { data } = await api.get("search/movie", {
+  async function handleClick(id: number | undefined) {
+    setLoading(true);
+    if (id) {
+      const { data } = await api.get(`movie/${id}`, {
         params: {
           api_key: process.env.REACT_APP_AUTH_KEY,
-          page: 1,
-          query,
         },
       });
-      setSearchMovie(data.results.slice(0, 5));
+      setMovieInfo(data);
+      setMovieTitle([]);
       setLoading(false);
-    } else {
-      return;
     }
   }
 
-  console.log(searchMovie);
-
   useEffect(() => {
+    async function searchMovies() {
+      if (query) {
+        const { data } = await api.get("search/movie", {
+          params: {
+            api_key: process.env.REACT_APP_AUTH_KEY,
+            page: 1,
+            query,
+          },
+        });
+        setMovieTitle(data.results.slice(0, 10));
+        setLoading(false);
+      } else {
+        return;
+      }
+    }
     searchMovies();
   }, [query]);
 
@@ -49,26 +56,36 @@ export default function SearchMovie() {
   return (
     <>
       <div className="search-movie-container">
-        <form onSubmit={handleSubmit}>
+        <form className="search-movie-form">
           <h2>Find here your favorite movie</h2>
-          <input onChange={(e: any) => setQueryValue(e.target.value)} />
-          <button type="submit">Search</button>
+          <input onChange={(e: any) => setQuery(e.target.value)} />
         </form>
       </div>
-      <div className="movie-info-container">
-        {searchMovie.map((movie: MovieType) => (
-          <div className="slide" key={movie.id}>
-            <div className="movie-container">
-              <h2>{movie.title}</h2>
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <Link to={`/movie/${movie.id}`}>See more</Link>
-            </div>
-          </div>
+      <div className="movie-title-container">
+        {movieTitle.map((movie: MovieType) => (
+          <h2 key={movie.id} onClick={() => handleClick(movie.id)}>
+            {movie.title}
+          </h2>
         ))}
       </div>
+      {movieInfo ? (
+        <div className="selected-movie-info-container">
+          {movieInfo.poster_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/original${
+                movieInfo!.poster_path
+              }`}
+              alt={movieInfo!.title}
+            />
+          ) : (
+            <img src={notAvailable} alt="not available" />
+          )}
+
+          <Link to={`/movie/${movieInfo!.id}`}>See more</Link>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 }

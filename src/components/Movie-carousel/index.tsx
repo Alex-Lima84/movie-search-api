@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import api from "../../../services/api";
+import api from "../../services/api";
 import { Link } from "react-router-dom";
-import { MovieType } from "../../../types";
+import { MovieType } from "../../types";
 import "./styles.scss";
 
 const delay = 5000;
@@ -45,7 +45,7 @@ export default function MovieCarousel() {
       loadNowPlayingMovies();
       resetTimeout();
     };
-  }, [index]);
+  }, [index, movies.length]);
 
   if (loading) {
     return (
@@ -61,10 +61,9 @@ export default function MovieCarousel() {
         className="slideshowSlider"
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
       >
-        {movies.map((movie: MovieType, index) => (
+        {movies.map((movie: MovieType) => (
           <div className="slide" key={movie.id}>
-            <div className="movie-container">
-              <h2>{movie.title}</h2>
+            <div className="movie-container">              
               <img
                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={movie.title}
@@ -74,7 +73,6 @@ export default function MovieCarousel() {
           </div>
         ))}
       </div>
-      
     </div>
   );
 }
