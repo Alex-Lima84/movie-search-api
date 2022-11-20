@@ -1,4 +1,18 @@
 .movie-info-container {
+
+  .back-button {
+    width: 70px;
+    font-size: 12px;
+      background-color: #116feb;
+      text-decoration: none;
+      color: #fff;
+      padding: 5px;
+      text-align: center;
+      margin-bottom: 50px;
+      margin-top: 20px;
+      border-radius: 4px;
+  }
+
   display: flex;
   flex-direction: column;
   max-width: 800px;

@@ -4,6 +4,7 @@ import api from "../../services/api";
 import { Link } from "react-router-dom";
 import { MovieType } from "../Home";
 import "./styles.scss";
+import { toast } from "react-toastify";
 
 export default function Movie() {
   const { id } = useParams();
@@ -39,7 +40,7 @@ export default function Movie() {
   }, [id, navigate]);
 
   function saveMovie() {
-    const myMoviesList: string | null = localStorage.getItem("@moviesList");  
+    const myMoviesList: string | null = localStorage.getItem("@moviesList");
 
     let savedMovies = myMoviesList ? JSON.parse(myMoviesList) : [];
 
@@ -48,13 +49,13 @@ export default function Movie() {
     );
 
     if (movieAlreadySaved) {
-      alert("Movie already saved in the list! 😃");
+      toast.error("Movie already saved in the list! 😃");
       return;
     }
 
     savedMovies.push(movie);
     localStorage.setItem("@moviesList", JSON.stringify(savedMovies));
-    alert("Movie saved! 😊");
+    toast.success("Movie saved! 😊");
   }
 
   if (loading) {
@@ -67,6 +68,7 @@ export default function Movie() {
 
   return (
     <div className="movie-info-container">
+      <Link className="back-button" to={"/"}>Main page</Link>
       <h1>{movie.title}</h1>
       <img
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
