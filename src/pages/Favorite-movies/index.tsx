@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MovieType } from "../Home";
+import { MovieType } from "../../types/index"
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import { toast } from "react-toastify";

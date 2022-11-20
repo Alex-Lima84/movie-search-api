@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
-import { MovieType } from "../Home";
+import { MovieType } from "../../types/index";
 import "./styles.scss";
 import { toast } from "react-toastify";
+import notAvailable from "../../assets/Image-Not-Available.png";
 
 export default function Movie() {
   const { id } = useParams();
@@ -35,7 +36,6 @@ export default function Movie() {
     return () => {
       setMovie({});
       setLoading(true);
-      console.log("Component unmounted");
     };
   }, [id, navigate]);
 
@@ -68,12 +68,19 @@ export default function Movie() {
 
   return (
     <div className="movie-info-container">
-      <Link className="back-button" to={"/"}>Main page</Link>
+      <Link className="back-button" to={"/"}>
+        Main page
+      </Link>
       <h1>{movie.title}</h1>
-      <img
-        src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-        alt={movie.title}
-      />
+      {movie.backdrop_path ? (
+        <img
+          src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+          alt={movie.title}
+        />
+      ) : (
+        <img className="not-available" src={notAvailable} alt="not available" />
+      )}
+
       <h3>Overview</h3>
       <span>{movie.overview}</span>
       <h4>Rating: {movie.vote_average!.toFixed(1)} /10</h4>
