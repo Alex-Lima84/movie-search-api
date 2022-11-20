@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
-import { MovieType } from "../Home";
+import { MovieType } from "../../types/index";
 import "./styles.scss";
 import { toast } from "react-toastify";
 
@@ -35,7 +35,6 @@ export default function Movie() {
     return () => {
       setMovie({});
       setLoading(true);
-      console.log("Component unmounted");
     };
   }, [id, navigate]);
 
@@ -68,7 +67,9 @@ export default function Movie() {
 
   return (
     <div className="movie-info-container">
-      <Link className="back-button" to={"/"}>Main page</Link>
+      <Link className="back-button" to={"/"}>
+        Main page
+      </Link>
       <h1>{movie.title}</h1>
       <img
         src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
