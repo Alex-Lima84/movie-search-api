@@ -54,7 +54,7 @@ export default function SearchMovie() {
   }
 
   return (
-    <>
+    <div className="outter-search-container">
       <div className="search-movie-container">
         <form className="search-movie-form">
           <h2>Find here your favorite movie</h2>
@@ -86,6 +86,6 @@ export default function SearchMovie() {
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 }
