@@ -57,6 +57,7 @@ export default function MovieCarousel() {
 
   return (
     <div className="slideshow">
+      <h2>Now Playing</h2>
       <div
         className="slideshowSlider"
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
