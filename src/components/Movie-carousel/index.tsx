@@ -64,12 +64,14 @@ export default function MovieCarousel() {
       >
         {movies.map((movie: MovieType) => (
           <div className="slide" key={movie.id}>
-            <div className="movie-container">              
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <Link to={`/movie/${movie.id}`}>See more</Link>
+            <div className="movie-container">
+              <Link to={`/movie/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  alt={movie.title}
+                />
+              </Link>
+             
             </div>
           </div>
         ))}
