@@ -71,7 +71,6 @@ export default function MovieCarousel() {
                   alt={movie.title}
                 />
               </Link>
-             
             </div>
           </div>
         ))}

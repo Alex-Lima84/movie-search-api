@@ -39,11 +39,12 @@ header {
   .favorites {
     cursor: pointer;
     text-decoration: none;
-    background-color: #e63946;
+    font-size: 24px;
+    font-weight: 600;    
     padding: 4px 14px;
-    color: #fff;
+    color: #000;
     border-radius: 4px;
     margin-right: 50px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(0, 0, 0, 0.062) 0px 2px 8px 0px;
   }
 }

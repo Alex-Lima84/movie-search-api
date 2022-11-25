@@ -71,17 +71,17 @@ export default function SearchMovie() {
       {movieInfo ? (
         <div className="selected-movie-info-container">
           {movieInfo.poster_path ? (
-            <img
-              src={`https://image.tmdb.org/t/p/original${
-                movieInfo!.poster_path
-              }`}
-              alt={movieInfo!.title}
-            />
+            <Link to={`/movie/${movieInfo!.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/original${
+                  movieInfo!.poster_path
+                }`}
+                alt={movieInfo!.title}
+              />
+            </Link>
           ) : (
             <img src={notAvailable} alt="not available" />
           )}
-
-          <Link to={`/movie/${movieInfo!.id}`}>See more</Link>
         </div>
       ) : (
         ""
