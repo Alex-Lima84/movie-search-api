@@ -88,7 +88,7 @@ export default function Movie() {
         <button onClick={saveMovie}>Save</button>
         <button>
           <a
-            href={`https://youtube.com/results?search_query=${movie.title} trailer official`}
+            href={`https://youtube.com/results?search_query=${movie.title} official trailer`}
             target="blank"
             rel="external"
           >
