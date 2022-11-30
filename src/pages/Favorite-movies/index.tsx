@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MovieType } from "../../types/index"
+import { MovieType } from "../../types/index";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import { toast } from "react-toastify";
@@ -18,7 +18,7 @@ export default function FavoriteMovies() {
     });
     setFavoriteMovies(filteredMovies);
     localStorage.setItem("@moviesList", JSON.stringify(filteredMovies));
-    toast.success("Movie deleted! 😊");
+    toast.success("Movie deleted! 😎");
   }
 
   return (

@@ -1,21 +1,27 @@
-.movie-info-container {
+.back-button-container {
+  display: flex;  
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 58px;
+  width: 100%; 
   .back-button {
-    
     font-size: 20px;
     background-color: #e63946;
     text-decoration: none;
-    color: #000;    
-    text-align: left;
+    color: #000;
+    
     margin-bottom: 50px;
-    margin-top: 20px;
-    border-radius: 4px;   
-  } 
+    margin-top: 20px;    
+  }
+}
 
+.movie-info-container {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
   margin-top: 18px;
+  margin-left: 20px;
   padding: 0 8px;
+  height: 100vh;
 
   h1 {
     margin: 14px 0;
@@ -53,14 +59,16 @@
     border-radius: 4px;
     cursor: pointer;
     transition: ease-in-out 0.4s;
+    background: none;
+    border: 1px solid #000;
   }
 
   button:hover {
-    background-color: #e63946;
-    color: #fff;
+    background-color: #000;
+    color: #e63946;
 
     a {
-      color: #fff;
+      color: #e63946;
     }
   }
 
