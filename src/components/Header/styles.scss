@@ -30,21 +30,55 @@ header {
   .logo {
     display: flex;
     align-items: center;
-   img {
-    width: 200px;
-    margin-left: 50px;
-   }
+    img {
+      width: 200px;
+      margin-left: 50px;
+    }
   }
 
   .favorites {
     cursor: pointer;
     text-decoration: none;
     font-size: 24px;
-    font-weight: 600;    
+    font-weight: 600;
     padding: 4px 14px;
     color: #000;
     border-radius: 4px;
     margin-right: 50px;
     box-shadow: rgba(0, 0, 0, 0.062) 0px 2px 8px 0px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bottom-div {
+    .logo {
+      display: flex;
+      align-items: center;
+      img {
+        width: 150px;
+        margin-left: 20px;
+      }
+    }   
+    .favorites {
+      font-size: 20px;
+      margin-right: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bottom-div {
+    .logo {
+      display: flex;
+      align-items: center;
+      img {
+        width: 100px;
+        margin-left: 10px;
+      }
+    }   
+    .favorites {
+      font-size: 16px;
+      margin-right: 10px;
+    }
   }
 }
