@@ -9,6 +9,7 @@
 
       h2 {
         margin-bottom: 20px;
+        text-align: center;
       }
 
       input {
@@ -61,10 +62,56 @@
       padding: 10px 0;
 
       img {
-        width: 30%;
+        width: 40%;
 
         object-fit: contain;
         border-radius: 8px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .outter-search-container {
+    .selected-movie-info-container {
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+
+        img {
+          width: 60%;
+
+          object-fit: contain;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .outter-search-container {
+    min-height: 600px;
+    .search-movie-container {
+      .search-movie-form {
+        h2 {
+          font-size: 16px;
+        }
+        input {
+          width: 250px;
+        }
+      }
+    }
+
+    .movie-title-container {      
+      h2 {
+        font-size: 11px;
+       
+        width: 250px;
+        max-width: 250px;
+        
       }
     }
   }

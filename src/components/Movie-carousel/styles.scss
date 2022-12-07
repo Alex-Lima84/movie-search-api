@@ -5,7 +5,7 @@
   margin-top: 14px;
 }
 
-.slideshow { 
+.slideshow {
   margin: 0 auto;
   overflow: hidden;
   max-width: 300px;
@@ -45,13 +45,21 @@
           padding: 10px 0;
 
           img {
-            max-width: 100%;
+            max-width: 60%;
             max-height: 400px;
             object-fit: contain;
             border-radius: 8px;
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .slideshow {
+    h2 {      
+      font-size: 24px;
     }
   }
 }

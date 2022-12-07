@@ -89,7 +89,7 @@ export default function Movie() {
         )}
 
         <h3>Overview</h3>
-        <span>{movie.overview}</span>
+        <p>{movie.overview}</p>
         <h4>Rating: {movie.vote_average!.toFixed(1)} / 10</h4>
         <div className="movie-buttons-container">
           <button onClick={saveMovie}>Save</button>
